@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
     private val handler = Handler(Looper.getMainLooper())
     private var gameRunning = false
 
+    private val obstacles = mutableListOf<ImageView>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -79,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             override fun run() {
                 if (lives > 0 && gameRunning) {
                     spawnObstacles()
-                    val delay = (1000L - score).coerceAtLeast(400L) // מעלה קצב לפי ניקוד
+                    val delay = (1000L - score).coerceAtLeast(400L)
                     handler.postDelayed(this, delay)
                 }
             }
@@ -90,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         if (laneWidth == 0 || lives == 0) return
 
         val lanes = listOf(0, 1, 2).shuffled()
-        val numObstacles = if (Random.nextFloat() < 0.25f) 2 else 1  // 25% סיכוי ל-2 מכשולים
+        val numObstacles = if (Random.nextFloat() < 0.25f) 2 else 1
 
         for (i in 0 until numObstacles) {
             val lane = lanes[i]
@@ -105,6 +107,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             gameRoot.addView(stone)
+            obstacles.add(stone)
             animateObstacle(stone)
         }
     }
@@ -135,11 +138,12 @@ class MainActivity : AppCompatActivity() {
 
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
-                    if (obstacle.alpha == 1f) {
+                    if (obstacle.alpha == 1f && gameRunning) {
                         score += 10
                         tvScore.text = getString(R.string.score_template, score)
                     }
                     gameRoot.removeView(obstacle)
+                    obstacles.remove(obstacle)
                 }
             })
         }
@@ -171,6 +175,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun endGame() {
         gameRunning = false
+        handler.removeCallbacksAndMessages(null)
+
+        for (obstacle in obstacles) {
+            obstacle.clearAnimation()
+            gameRoot.removeView(obstacle)
+        }
+        obstacles.clear()
+
         AlertDialog.Builder(this)
             .setTitle("Game Over")
             .setMessage("Your score: $score")
