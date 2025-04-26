@@ -24,7 +24,7 @@ A simple Android game developed as part of a homework assignment.
 ## Technologies Used
 - Kotlin
 - Android Studio
-- FrameLayout and standard Android Views (no Canvas)
+- FrameLayout and standard Android Views
 
 ## How to Play
 1. Press **Start** to begin the game.
