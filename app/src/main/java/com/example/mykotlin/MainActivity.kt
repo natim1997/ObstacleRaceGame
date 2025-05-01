@@ -36,9 +36,8 @@ class MainActivity : AppCompatActivity() {
     private var lives = 3
     private var currentLane = 1
 
-    // Countdown to next spawn: 0 = spawn this tick
     private var spawnCounter = 0
-    private val emptyRowsBetween = 2 // number of empty rows between spawns
+    private val emptyRowsBetween = 2
 
     private val handler = Handler(Looper.getMainLooper())
     private var gameRunning = false
@@ -48,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Bind views
         gridBoard = findViewById(R.id.grid_board)
         imgCar    = findViewById(R.id.img_car)
         btnLeft   = findViewById(R.id.btn_left)
@@ -59,14 +57,11 @@ class MainActivity : AppCompatActivity() {
         tvScore   = findViewById(R.id.tv_score)
         btnStart  = findViewById(R.id.btn_start)
 
-        // Load arrow vectors
         btnLeft.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_left_arrow))
         btnRight.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_right_arrow))
 
-        // Padding for smaller stones
         val padding = (10 * resources.displayMetrics.density).toInt()
 
-        // Build grid cells
         for (r in 0 until numRows) {
             for (c in 0 until numCols) {
                 val cell = AppCompatImageView(this).apply {
@@ -85,7 +80,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Position car after layout
         gridBoard.post { updateCarPosition() }
 
         btnLeft.setOnClickListener {
@@ -127,7 +121,6 @@ class MainActivity : AppCompatActivity() {
     private fun tick() {
         if (!gameRunning) return
 
-        // Compute rowHeight and keep constant speed
         val rowHeight = gridBoard.height / numRows
         val duration = 400L // constant 400ms per row
 
@@ -137,13 +130,11 @@ class MainActivity : AppCompatActivity() {
             .setInterpolator(LinearInterpolator())
             .withEndAction {
                 gridBoard.translationY = 0f
-                // Shift rows down
                 for (r in numRows - 1 downTo 1) {
                     gridCells[r] = gridCells[r - 1].copyOf()
                 }
                 gridCells[0] = BooleanArray(numCols)
 
-                // Spawn if counter == 0
                 if (spawnCounter == 0) {
                     val lanes = (0 until numCols).shuffled()
                     val count = if (Random.nextFloat() < 0.25f) 2 else 1
@@ -153,7 +144,6 @@ class MainActivity : AppCompatActivity() {
                     spawnCounter--
                 }
 
-                // Bottom row collision/score
                 for (c in 0 until numCols) {
                     if (gridCells[numRows - 1][c]) {
                         if (c == currentLane) {
@@ -171,7 +161,6 @@ class MainActivity : AppCompatActivity() {
                     return@withEndAction
                 }
 
-                // Refresh and loop
                 refreshGridUI()
                 handler.postDelayed({ tick() }, 0)
             }
