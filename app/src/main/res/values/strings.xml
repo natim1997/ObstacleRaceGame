@@ -1,13 +1,12 @@
 <resources>
-    <string name="app_name">MyKotlin</string>
+    <string name="app_name">ObstacleRace</string>
     <string name="start">Start</string>
     <string name="score_0">Score: 0</string>
     <string name="score_template">Score: %1$d</string>
-
     <string name="desc_heart1">Heart 1</string>
     <string name="desc_heart2">Heart 2</string>
     <string name="desc_heart3">Heart 3</string>
-    <string name="desc_car">Player car</string>
-    <string name="desc_left">Move left</string>
-    <string name="desc_right">Move right</string>
+    <string name="desc_car">Car</string>
+    <string name="desc_left">Left</string>
+    <string name="desc_right">Right</string>
 </resources>

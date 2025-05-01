@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/game_root"
     android:layout_width="match_parent"
@@ -7,17 +9,13 @@
     android:background="#EEEEEE"
     tools:context=".MainActivity">
 
-    <!-- Start Button -->
     <Button
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start"
-        android:layout_gravity="center"
-        android:layout_marginTop="0dp" />
+        android:layout_gravity="center" />
 
-
-    <!-- Top bar (hearts + score) -->
     <LinearLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
@@ -67,7 +65,15 @@
             android:gravity="end" />
     </LinearLayout>
 
-    <!-- Car image (הוזז עם leftMargin) -->
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/grid_board"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="120dp"
+        app:rowCount="8"
+        app:columnCount="3" />
+
     <ImageView
         android:id="@+id/img_car"
         android:layout_width="64dp"
@@ -77,30 +83,30 @@
         android:src="@drawable/car"
         android:contentDescription="@string/desc_car" />
 
-    <!-- Left arrow button -->
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_left"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@drawable/left_arrow"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="bottom|start"
-        android:background="@android:color/transparent"
         android:layout_margin="24dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/desc_left"
+        app:srcCompat="@drawable/ic_left_arrow"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/desc_left" />
+        android:tint="@null" />
 
-    <!-- Right arrow button -->
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_right"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@drawable/right_arrow"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="bottom|end"
-        android:background="@android:color/transparent"
         android:layout_margin="24dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/desc_right"
+        app:srcCompat="@drawable/ic_right_arrow"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/desc_right" />
+        android:tint="@null" />
 
 </FrameLayout>
