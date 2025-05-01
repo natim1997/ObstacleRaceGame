@@ -7,14 +7,17 @@
     android:background="#EEEEEE"
     tools:context=".MainActivity">
 
+    <!-- Start Button -->
     <Button
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="0dp" />
 
+
+    <!-- Top bar (hearts + score) -->
     <LinearLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
@@ -64,15 +67,17 @@
             android:gravity="end" />
     </LinearLayout>
 
+    <!-- Car image (הוזז עם leftMargin) -->
     <ImageView
         android:id="@+id/img_car"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@drawable/car"
-        android:layout_gravity="bottom|center_horizontal"
+        android:layout_gravity="bottom"
         android:layout_marginBottom="110dp"
+        android:src="@drawable/car"
         android:contentDescription="@string/desc_car" />
 
+    <!-- Left arrow button -->
     <ImageButton
         android:id="@+id/btn_left"
         android:layout_width="64dp"
@@ -85,6 +90,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/desc_left" />
 
+    <!-- Right arrow button -->
     <ImageButton
         android:id="@+id/btn_right"
         android:layout_width="64dp"

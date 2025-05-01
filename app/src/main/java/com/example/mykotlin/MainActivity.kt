@@ -122,7 +122,10 @@ class MainActivity : AppCompatActivity() {
                 obstacle.translationY = y
 
                 val obstacleLane = obstacle.tag as Int
-                val didCollide = obstacleLane == currentLane &&
+                val isBelowCar = y > imgCar.y + imgCar.height
+
+                val didCollide = !isBelowCar &&
+                        obstacleLane == currentLane &&
                         y + obstacle.height >= imgCar.y &&
                         y <= imgCar.y + imgCar.height &&
                         obstacle.alpha == 1f
