@@ -1,12 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ObstacleRace</string>
+    <string name="app_name">My Kotlin Game</string>
+
     <string name="start">Start</string>
-    <string name="score_0">Score: 0</string>
+
     <string name="score_template">Score: %1$d</string>
-    <string name="desc_heart1">Heart 1</string>
-    <string name="desc_heart2">Heart 2</string>
-    <string name="desc_heart3">Heart 3</string>
+    <string name="score_0">Score: 0</string>
+
+    <string name="distance_template">%1$d m</string>
+    <string name="distance_0">0 m</string>
+
     <string name="desc_car">Car</string>
-    <string name="desc_left">Left</string>
-    <string name="desc_right">Right</string>
+    <string name="desc_heart1">Life 1</string>
+    <string name="desc_heart2">Life 2</string>
+    <string name="desc_heart3">Life 3</string>
+    <string name="desc_left">Move Left</string>
+    <string name="desc_right">Move Right</string>
+
+    <string name="menu_sensor_mode">Sensor Mode</string>
+    <string name="menu_button_mode">Button Mode</string>
+    <string name="menu_high_scores">High Scores</string>
+
+    <string name="game_over_title">Game Over</string>
+    <string name="game_over_message">Your score: %1$d</string>
+    <string name="restart">Restart</string>
+    <string name="google_maps_key">YOUR_ACTUAL_MAPS_API_KEY_HERE</string>
 </resources>
