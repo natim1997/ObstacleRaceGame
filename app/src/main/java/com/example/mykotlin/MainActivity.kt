@@ -16,6 +16,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity() {
     private var canMoveBySensor = true
     private val sensorCooldownMs = 500L
 
+    @RequiresApi(35)
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         super.onCreate(savedInstanceState)
@@ -182,6 +184,7 @@ class MainActivity : AppCompatActivity() {
         updateCarPosition()
     }
 
+    @RequiresApi(35)
     private fun tick() {
         if (!gameRunning) return
         val rowH = gridBoard.height / numRows
@@ -266,6 +269,7 @@ class MainActivity : AppCompatActivity() {
         f(3)
     }
 
+    @RequiresApi(35)
     private fun endGame() {
         gameRunning = false
         handler.removeCallbacksAndMessages(null)

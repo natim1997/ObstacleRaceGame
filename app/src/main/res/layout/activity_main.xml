@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="#EEEEEE">
 
-    <!-- כפתור התחלה -->
     <Button
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
@@ -15,7 +14,6 @@
         android:text="@string/start"
         android:layout_gravity="center" />
 
-    <!-- בר עליון: לב, ניקוד, מרחק -->
     <LinearLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
@@ -70,7 +68,6 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
-    <!-- הגריד (מסלול) -->
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/grid_board"
         android:layout_width="match_parent"
@@ -80,7 +77,6 @@
         app:rowCount="16"
         app:columnCount="5" />
 
-    <!-- המכונית -->
     <ImageView
         android:id="@+id/img_car"
         android:layout_width="64dp"
@@ -90,7 +86,6 @@
         android:src="@drawable/car"
         android:contentDescription="@string/desc_car"/>
 
-    <!-- כפתורי ניווט -->
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_left"
         android:layout_width="80dp"

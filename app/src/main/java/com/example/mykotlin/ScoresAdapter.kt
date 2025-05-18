@@ -7,27 +7,32 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class ScoresAdapter(
-    private val items: List<ScoreEntry>
-) : RecyclerView.Adapter<ScoresAdapter.VH>() {
+    private val items: List<ScoreEntry>,
+    private val clickListener: (ScoreEntry) -> Unit
+) : RecyclerView.Adapter<ScoresAdapter.ViewHolder>() {
 
-    inner class VH(view: View) : RecyclerView.ViewHolder(view) {
-        val tvRank: TextView = view.findViewById(R.id.tvRank)
-        val tvName: TextView = view.findViewById(R.id.tvName)
-        val tvScore: TextView = view.findViewById(R.id.tvScore)
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val tvRank  : TextView = view.findViewById(R.id.tvRank)
+        private val tvName  : TextView = view.findViewById(R.id.tvName)
+        private val tvScore : TextView = view.findViewById(R.id.tvScore)
+
+        fun bind(entry: ScoreEntry, position: Int) {
+            tvRank.text  = "${position + 1}."
+            tvName.text  = entry.name
+            tvScore.text = entry.score.toString()
+            itemView.setOnClickListener { clickListener(entry) }
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_score_row, parent, false)
-        return VH(v)
+        return ViewHolder(v)
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount() = items.size
 
-    override fun onBindViewHolder(holder: VH, position: Int) {
-        val entry = items[position]
-        holder.tvRank.text = "${position + 1})"
-        holder.tvName.text = entry.name
-        holder.tvScore.text = entry.score.toString()
+    override fun onBindViewHolder(holder: ViewHolder, pos: Int) {
+        holder.bind(items[pos], pos)
     }
 }
